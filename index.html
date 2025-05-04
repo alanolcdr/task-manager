@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <button id="toggleThemeBtn" class="theme-toggle-btn">🌙 Tryb ciemny</button>
+
+  <section class="taskManager">
+    <header class="card">
+      <h1>Task Manager </h1>
+      <form id="taskForm">
+        <input type="text" id="taskInput" placeholder="Napisz coś...">
+        <button type="submit">Dodaj</button>
+      </form>
+    </header>
+
+    <section id="taskContainer"></section>
+  </section>
+  <div class="confirm" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmDesc">
+    <h1 id="confirmTitle">Potwierdź usunięcie zadania</h1>
+    <p id="confirmDesc">Czy na pewno chcesz usunąć to zadanie?</p>
+    <div class="confirm-buttons">
+      <button class="cancel" type="button">Anuluj</button>
+      <button class="confirmed" type="button" autofocus>Usuń</button>
+    </div>
+  </div>
+
+  <div class="export-import-container">
+    <button id="exportJsonBtn">Eksportuj JSON</button>
+    <button id="importJsonBtn">Importuj JSON</button>
+    <input type="file" id="importFileInput" accept=".json" style="display:none" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html

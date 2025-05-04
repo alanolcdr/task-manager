@@ -1,0 +1,378 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+}
+
+.taskManager {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+}
+
+header.card {
+    background-color: #00796b;
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+header.card h1 {
+    margin: 0 0 0.8rem 0;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+#taskForm {
+    display: flex;
+    gap: 1rem;
+}
+
+#taskInput {
+    flex-grow: 1;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+#taskInput:focus {
+    outline: none;
+    box-shadow: 0 0 8px #00796b;
+    background-color: #e0f2f1;
+}
+
+button[type="submit"] {
+    background-color: #004d40;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 0 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #00695c;
+}
+
+#taskContainer {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.taskCard {
+    background-color: #004d40;
+    color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 170px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.taskCard.completed {
+    background-color: #388e3c;
+}
+
+.taskCard.pending {
+    background-color: #00796b;
+}
+
+.taskCard p {
+    margin: 0;
+    font-size: 1.2rem;
+    word-wrap: break-word;
+}
+
+.taskCard .status {
+    margin-top: 0.8rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #c8e6c9;
+}
+
+.button-box {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    user-select: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-box:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.green {
+    color: #a5d6a7;
+}
+
+.red {
+    color: #ef9a9a;
+}
+
+.export-import-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.export-import-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #00796b;
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1100;
+  }
+  
+  .export-import-container button {
+    background-color: #004d40;
+    border: none;
+    color: white;
+    padding: 0.7rem 1.3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    min-width: 140px;
+  }
+  
+  .export-import-container button:hover {
+    background-color: #00332a;
+  }
+  
+
+.export-import-container button:hover {
+    background-color: #004d40;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.overlay::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    opacity: 0;
+    animation: fadeInOverlay 0.3s forwards;
+  }
+  
+  .confirm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 90%;
+    max-width: 400px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    padding: 2rem 2.5rem;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .confirm.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .confirm h1 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #333;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .confirm p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .confirm-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .confirm button {
+    flex: 1;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  
+  .confirm button.cancel {
+    background-color: #e57373;
+    color: white;
+  }
+  
+  .confirm button.cancel:hover {
+    background-color: #ef5350;
+  }
+  
+  .confirm button.confirmed {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .confirm button.confirmed:hover {
+    background-color: #388e3c;
+  }
+
+  @keyframes fadeInOverlay {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .theme-toggle-btn {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.2rem;
+    z-index: 1200;
+    background: #00796b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.theme-toggle-btn:hover {
+    background: #004d40;
+}
+
+/* Tryb ciemny */
+body.dark-mode {
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode .taskManager {
+    background: #232526;
+    color: #e0e0e0;
+}
+
+body.dark-mode header.card {
+    background: #212121;
+    color: #e0e0e0;
+}
+
+body.dark-mode .taskCard {
+    background: #333;
+    color: #e0e0e0;
+}
+
+body.dark-mode .taskCard.completed {
+    background: #2e7d32;
+}
+
+body.dark-mode .taskCard.pending {
+    background: #37474f;
+}
+
+body.dark-mode .taskCard .status {
+    color: #a5d6a7;
+}
+
+body.dark-mode .export-import-container {
+    background: #212121;
+}
+
+body.dark-mode .export-import-container button {
+    background: #333;
+    color: #e0e0e0;
+}
+
+body.dark-mode .export-import-container button:hover {
+    background: #111;
+}
+
+body.dark-mode .confirm {
+    background: #232526;
+    color: #e0e0e0;
+}
+
+body.dark-mode .confirm h1 {
+    color: #fff;
+}
+
+body.dark-mode .confirm p {
+    color: #bdbdbd;
+}
+
+body.dark-mode .confirm button.cancel {
+    background: #b71c1c;
+}
+
+body.dark-mode .confirm button.cancel:hover {
+    background: #d32f2f;
+}
+
+body.dark-mode .confirm button.confirmed {
+    background: #388e3c;
+}
+
+body.dark-mode .confirm button.confirmed:hover {
+    background: #2e7d32;
+}
+
+  
